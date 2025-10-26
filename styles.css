@@ -232,6 +232,16 @@ body {
     height: 32px;
 }
 
+.project-icon-text {
+    font-size: 2rem;
+    font-weight: 900;
+    line-height: 1;
+}
+
+.project-icon-text span {
+    display: block;
+}
+
 .project-card h3 {
     font-size: 1.4rem;
     margin-bottom: 0.5rem;
