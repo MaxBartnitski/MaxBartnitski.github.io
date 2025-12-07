@@ -9,5 +9,3 @@ This site is deployed via GitHub Pages and accessible at [maxbartnitski.com](htt
 ## Local Development
 
 Simply open `index.html` in your browser to view the site locally.
-
-rtest
