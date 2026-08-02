@@ -57,53 +57,57 @@
                 </header>
 
                 <div class="featured">
-                    <a href="https://gettrackpass.com" class="featured-item" target="_blank" rel="noopener noreferrer">
-                        <div class="featured-meta">
-                            <span class="status status-launched">Launched</span>
+                    <a href="https://gettrackpass.com" class="featured-item reveal" target="_blank" rel="noopener noreferrer">
+                        <div class="featured-body">
                             <span class="featured-domain">gettrackpass.com</span>
+                            <h3 class="featured-title">TrackPass</h3>
+                            <p class="featured-desc">Partners with local tracks to make getting on track simple, from your first time ever to full open lapping.</p>
                         </div>
-                        <h3 class="featured-title">TrackPass</h3>
-                        <p class="featured-desc">Partners with local tracks to make getting on track simple, from your first time ever to full open lapping.</p>
+                        <span class="featured-arrow" aria-hidden="true">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
+                        </span>
                     </a>
 
-                    <a href="https://carsandkids.net" class="featured-item" target="_blank" rel="noopener noreferrer">
-                        <div class="featured-meta">
-                            <span class="status status-launched">Launched</span>
+                    <a href="https://carsandkids.net" class="featured-item reveal" target="_blank" rel="noopener noreferrer">
+                        <div class="featured-body">
                             <span class="featured-domain">carsandkids.net</span>
+                            <h3 class="featured-title">Cars &amp; Kids</h3>
+                            <p class="featured-desc">Nonprofit bringing incredible cars and shared experiences to kids in hospitals, schools, and communities.</p>
                         </div>
-                        <h3 class="featured-title">Cars &amp; Kids</h3>
-                        <p class="featured-desc">Nonprofit bringing incredible cars and shared experiences to kids in hospitals, schools, and communities.</p>
+                        <span class="featured-arrow" aria-hidden="true">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
+                        </span>
                     </a>
                 </div>
 
-                <div class="secondary">
+                <div class="secondary reveal">
                     <p class="section-eyebrow">Also</p>
                     <ul class="secondary-list">
                         <li>
                             <a href="https://ushred.co" class="secondary-item" target="_blank" rel="noopener noreferrer">
                                 <div class="secondary-top">
                                     <span class="secondary-name">UShred</span>
+                                    <span class="secondary-domain">ushred.co</span>
                                 </div>
                                 <p class="secondary-desc">Hands-free ski and snowboard video. Beacons trigger fixed cameras, clips land on your phone to share.</p>
-                                <span class="secondary-domain">ushred.co</span>
                             </a>
                         </li>
                         <li>
                             <a href="https://thecargarage.co" class="secondary-item" target="_blank" rel="noopener noreferrer">
                                 <div class="secondary-top">
                                     <span class="secondary-name">The Garage</span>
+                                    <span class="secondary-domain">thecargarage.co</span>
                                 </div>
                                 <p class="secondary-desc">Digital hub for car enthusiasts.</p>
-                                <span class="secondary-domain">thecargarage.co</span>
                             </a>
                         </li>
                         <li>
                             <a href="https://summitserenityretreat.com" class="secondary-item" target="_blank" rel="noopener noreferrer">
                                 <div class="secondary-top">
                                     <span class="secondary-name">Summit Serenity Retreat</span>
+                                    <span class="secondary-domain">summitserenityretreat.com</span>
                                 </div>
                                 <p class="secondary-desc">Mountain cabin idea in the Colorado Rockies.</p>
-                                <span class="secondary-domain">summitserenityretreat.com</span>
                             </a>
                         </li>
                     </ul>
@@ -199,6 +203,23 @@
         };
         window.addEventListener('scroll', onScroll, { passive: true });
         onScroll();
+
+        const revealEls = document.querySelectorAll('.reveal');
+        if ('IntersectionObserver' in window) {
+            const io = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    if (!entry.isIntersecting) return;
+                    entry.target.classList.add('is-visible');
+                    io.unobserve(entry.target);
+                });
+            }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+            revealEls.forEach((el, i) => {
+                el.style.setProperty('--reveal-delay', `${i * 80}ms`);
+                io.observe(el);
+            });
+        } else {
+            revealEls.forEach((el) => el.classList.add('is-visible'));
+        }
     </script>
 </body>
 </html>
